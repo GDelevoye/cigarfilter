@@ -1,0 +1,47 @@
+package:
+  string: cigarfilter
+  name: cigarfilter
+  version: "1.0.0"
+
+source: 
+  path: ../
+
+build:
+  number: 0
+  binary_relocation: true
+  entry_points :
+    - cigarfilter_config=cigarfilter.cigarfilter_config:main
+  script:
+    - conan config set general.revisions_enabled=1
+    - conan remove "*" -s -b -f
+    - cmake -H. -B build_conda -G "${CMAKE_GENERATOR}" -DCMAKE_INSTALL_PREFIX=${PREFIX} # [not win]
+    - cmake -H. -B build_conda -G "%CMAKE_GENERATOR%" -DCMAKE_INSTALL_PREFIX="%LIBRARY_PREFIX%" # [win]
+    - cmake --build build_conda --target install
+    - {{ PYTHON }} -m pip install --no-deps --ignore-installed --no-cache-dir -vvv .
+    - cigarfilter_test
+requirements:
+  build:
+    - python
+    - pip
+    - setuptools
+    - cmake
+    - conan
+    - make
+  hosts:
+    - python
+    - pip
+    - setuptools
+    - cmake
+    - conan
+    - make
+  run:
+    - python
+    - pip
+    - setuptools
+    - cmake
+    - conan
+    - make
+
+about:
+  home: https://github.com/GDelevoye/cigarfilter
+  summary: A fast and hackable tool to filter .bam files by CIGAR string 

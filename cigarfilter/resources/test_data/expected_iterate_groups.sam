@@ -1,0 +1,8 @@
+Cigar string is : 10S160M15S
+Does it start with clipping ? 1
+Does it end with clipping ? 1
+Now, let's iterate over all groups :
+Group number 0 is of kind S and contains 10 elements
+Group number 1 is of kind M and contains 160 elements
+Group number 2 is of kind S and contains 15 elements
+Total number of soft-clipped : 25

@@ -30,3 +30,12 @@
 *.exe
 *.out
 *.app
+
+cmake*
+
+# CLion - JetBrain
+.idea/*
+
+# datasets
+
+*.bam
