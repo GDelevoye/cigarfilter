@@ -29,8 +29,7 @@ jobs:
             conda build conda-recipe -c conda-forge
             conda install -c local -c conda-forge cigarfilter -n cig -y
             source activate cig
-            cigarfilter -h
-            cigarfilter_config -h
+            cigarfilter_test
 workflows:
   install_and_test:
     jobs:
