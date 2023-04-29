@@ -1,4 +1,4 @@
-cd /home/guillaume/anaconda3/envs
+cd /home/delevoye/miniconda3/envs/
 rm -rvf * 
 cd ..
 cd conda-bld
@@ -6,8 +6,8 @@ rm -rvf *
 conda build purge all
 conda clean -a -y
 pip uninstall -y cigarfilter
-# conda uninstall -y cigarfilter
-cd //home/guillaume/GitHub/cigarfilter
+conda uninstall -y cigarfilter
+cd //home/delevoye/GitHub/cigarfilter
 conda build -c conda-forge conda-recipe
 conda env remove -n cig -y
 conda create -n cig -y

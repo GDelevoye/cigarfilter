@@ -25,21 +25,21 @@ requirements:
     - pip
     - setuptools
     - cmake
-    - conan
+    - conan<2
     - make
   hosts:
     - python
     - pip
     - setuptools
     - cmake
-    - conan
+    - conan<2
     - make
   run:
     - python
     - pip
     - setuptools
     - cmake
-    - conan
+    - conan<2
     - make
 
 about:
