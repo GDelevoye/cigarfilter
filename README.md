@@ -1,3 +1,5 @@
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/GDelevoye/cigarfilter/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/GDelevoye/cigarfilter/tree/main)
+
 # cigarfilter
 
 ***
