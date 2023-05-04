@@ -46,34 +46,23 @@ This projects aims to simplify the development/deployment of such filters coded 
 
 ## Step 1. Installation
 
-### clone the directory : 
+### Requirement:
 
-```console
-user@computer:$ git clone https://github.com/GDelevoye/cigarfilter/
-user@computer:$ cd cigarfilter
+* [A C++17 compliant compiler](https://en.cppreference.com/w/cpp/compiler_support)
+* CMake >= 3.25
+* Python, pip
+
+### Installation from source
+
+``̀`console
+pip install conan==1.59.0 && git clone https://github.com/GDelevoye/cigarfilter/ && cd cigarfilter && mkdir -p build && cd build && cmake .. && make install && cd .. && pip install .
 ```
 
-### Create your [conda](https://www.anaconda.com/products/distribution) environment
-
-```console
-user@computer:$ conda activate
-(base) user@computer:$ conda create -n your_env
-```
-
-### build and install the package from sources with [conda](https://www.anaconda.com/products/distribution) :
-
-This requires [a C++17 compliant compiler](https://en.cppreference.com/w/cpp/compiler_support)
-
-```console
-(base) user@computer:$ conda install conda-build
-(base) user@computer:$ conda build conda-recipe -c conda-forge
-(base) user@computer:$ conda install -c local cigarfilter -c conda-forge cigarfilter -n your_env
 ```
 ## Step 2. Check that your installation worked
 
 ```console
-(base) user@computer:$ conda activate -n your_env
-(your_env) user@computer:~$ cigarfilter -h
+user@computer:~$ cigarfilter -h
 USAGE:
   cigarfilter [-?|-h|--help] [-f|--filter <filter name>] [-p|--print_header <bool>]
 
@@ -87,12 +76,6 @@ OPTIONS, ARGUMENTS:
                           When set to false, the header is not printed. <default: TRUE>
 
 ```
-
-> You can also run the tests locally :
-> 
-> ```console
-> (your_env) user@computer:~$ cigarfilter_test
-> ```
 
 ## Step 3. Copy-paste the template in a .cpp source file
 
