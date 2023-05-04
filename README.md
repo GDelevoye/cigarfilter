@@ -66,7 +66,7 @@ cd .. && \
 pip install .
 ```
 
-```
+
 ## Step 2. Check that your installation worked
 
 ```console
