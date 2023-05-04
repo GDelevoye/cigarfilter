@@ -98,7 +98,7 @@ def main():
 
         # Copy the template directory for a new project
         shutil.copytree(src_dir,dest_dir)
-        shutil.copy(path_to_cpp_file,os.path.join(dest_dir,"src",basename_cpp_file))
+        shutil.copy(path_to_cpp_file,os.path.join(dest_dir,"cpp_src",basename_cpp_file))
 
         HERE = os.getcwd()
         # Build it in the build subdir :

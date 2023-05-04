@@ -25,6 +25,8 @@ setup(
     package_data={'cigarfilter': extra_files},
     install_requires=["setuptools"],
     entry_points={'console_scripts': [
-        "cigarfilter_config=cigarfilter.cigarfilter_config:main"
+        "cigarfilter_config=cigarfilter.cigarfilter_config:main",
+        "cigarfilter=cigarfilter.cigarfilter_main:main",
+        "cigarfilter_test=cigarfilter.cigarfilter_main:main_test"
     ]}
 )

@@ -1,5 +1,5 @@
 project(cigarfilter)
-cmake_minimum_required(VERSION 3.5.2)
+cmake_minimum_required(VERSION 3.15)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_BUILD_TYPE Release)
@@ -7,13 +7,14 @@ set(CMAKE_CXX_FLAGS --coverage)
 
 #set(-static-libgcc -static-libstdc++)
 
+find_package(PythonInterp)
+
 #############################################################################
 # Run "conan install" from CMake :
 # See : https://github.com/conan-io/cmake-conan Run conan install
 
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_BINARY_DIR})
 list(APPEND CMAKE_PREFIX_PATH ${CMAKE_BINARY_DIR})
-
 
 # It requires to have either this file already copied on the repository, or to download it
 if(NOT EXISTS "${CMAKE_BINARY_DIR}/conan.cmake")
@@ -124,16 +125,18 @@ add_executable(${PROJECT_NAME}_test
 target_compile_features(${PROJECT_NAME}_test PRIVATE cxx_std_11)
 conan_target_link_libraries(${PROJECT_NAME}_test cigarfilter ${CONAN_LIBS})
 
-# Installation...
+# INSTALLATION
 
-install(TARGETS ${PROJECT_NAME} DESTINATION bin)
-install(TARGETS ${PROJECT_NAME}_test DESTINATION bin)
+# Put executables in the resources directory of the python package
 
-# Install example plugins
-install(TARGETS default DESTINATION ${CMAKE_SOURCE_DIR}/cigarfilter/resources/plugins) 
+install(TARGETS ${PROJECT_NAME} DESTINATION ${CMAKE_SOURCE_DIR}/cigarfilter/resources/bin)
+install(TARGETS ${PROJECT_NAME}_test DESTINATION ${CMAKE_SOURCE_DIR}/cigarfilter/resources/bin)
+
+# Put the default plugins in the ressources directory of the python package
+
+install(TARGETS default DESTINATION ${CMAKE_SOURCE_DIR}/cigarfilter/resources/plugins)
 install(TARGETS iterate_groups DESTINATION ${CMAKE_SOURCE_DIR}/cigarfilter/resources/plugins)
-install(TARGETS example1 DESTINATION ${CMAKE_SOURCE_DIR}/cigarfilter/resources/plugins) 
+install(TARGETS example1 DESTINATION ${CMAKE_SOURCE_DIR}/cigarfilter/resources/plugins)
 install(TARGETS example2 DESTINATION ${CMAKE_SOURCE_DIR}/cigarfilter/resources/plugins)
-install(TARGETS example3 DESTINATION ${CMAKE_SOURCE_DIR}/cigarfilter/resources/plugins) 
-install(TARGETS example4 DESTINATION ${CMAKE_SOURCE_DIR}/cigarfilter/resources/plugins) 
-
+install(TARGETS example3 DESTINATION ${CMAKE_SOURCE_DIR}/cigarfilter/resources/plugins)
+install(TARGETS example4 DESTINATION ${CMAKE_SOURCE_DIR}/cigarfilter/resources/plugins)
