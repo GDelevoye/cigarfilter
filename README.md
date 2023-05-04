@@ -52,9 +52,9 @@ This projects aims to simplify the development/deployment of such filters coded 
 * CMake >= 3.25
 * Python, pip
 
-### Installation from source
+### One-liner installation (from sources)
 
-``̀`console
+```console
 pip install conan==1.59.0 && git clone https://github.com/GDelevoye/cigarfilter/ && cd cigarfilter && mkdir -p build && cd build && cmake .. && make install && cd .. && pip install .
 ```
 
