@@ -1,0 +1,24 @@
+\doxysection{src/lib/plugin\+\_\+helpers.hpp File Reference}
+\hypertarget{plugin__helpers_8hpp}{}\label{plugin__helpers_8hpp}\index{src/lib/plugin\_helpers.hpp@{src/lib/plugin\_helpers.hpp}}
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$boost/shared\+\_\+ptr.\+hpp$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include "{}cigarfilter\+\_\+plugin.\+hpp"{}}\newline
+Include dependency graph for plugin\+\_\+helpers.\+hpp\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacecf}{cf}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+boost\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcigarfilter__plugin}{cigarfilter\+\_\+plugin}} $>$ \mbox{\hyperlink{namespacecf_ab240c595e864f911554b128f4633529a}{cf\+::get\+\_\+plugin}} (std\+::string name)
+\begin{DoxyCompactList}\small\item\em Returns a shared pointer to an object that contains the user-\/defined filter. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{namespacecf_a53f3de1ebcc48955d8b459877db0ee09}{cf\+::get\+\_\+plugin\+\_\+dir}} ()
+\begin{DoxyCompactList}\small\item\em Returns the directory where the plugins are. Requires a correct installation of cigarfilter\+\_\+config. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{namespacecf_ade72a9a442854a370d4781d73ca6a3d6}{cf\+::exec}} (const char \texorpdfstring{$\ast$}{*}cmd)
+\begin{DoxyCompactList}\small\item\em Executes a command and returns its standard output. See \href{/https://stackoverflow.com/questions/478898/how-do-i-execute-a-command-and-get-the-output-of-the-command-within-c-using-po}{\texttt{ / This SO post}} \end{DoxyCompactList}\end{DoxyCompactItemize}

@@ -1,0 +1,16 @@
+digraph "build/lib/cigarfilter"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  compound=true
+  subgraph clusterdir_7a9c7094c62de71bbec4b12c7c975b93 {
+    graph [ bgcolor="#edf0f7", pencolor="grey50", label="lib", fontname=Helvetica,fontsize=10 style="filled,dashed", URL="dir_7a9c7094c62de71bbec4b12c7c975b93.html",tooltip=""]
+  subgraph clusterdir_6418a629ba7a8e6629f9b25e84a0ecab {
+    graph [ bgcolor="#edf0f7", pencolor="grey25", label="", fontname=Helvetica,fontsize=10 style="filled,bold", URL="dir_6418a629ba7a8e6629f9b25e84a0ecab.html",tooltip=""]
+    dir_6418a629ba7a8e6629f9b25e84a0ecab [shape=plaintext, label="cigarfilter"];
+  dir_6a957bacf35c104981884caa43431da7 [label="resources", fillcolor="#a2b4d6", color="grey25", style="filled", URL="dir_6a957bacf35c104981884caa43431da7.html",tooltip=""];
+  }
+  }
+}

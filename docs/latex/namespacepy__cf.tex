@@ -1,0 +1,86 @@
+\doxysection{py\+\_\+cf Namespace Reference}
+\hypertarget{namespacepy__cf}{}\label{namespacepy__cf}\index{py\_cf@{py\_cf}}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacepy__cf_ab48917a8b4041f0359529396e96596c8}{enumerate\+\_\+groups}} (cigarstring)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacepy__cf_acf715c0f8c471607dfbe7253c8997747}{threshold}} = float(sys.\+argv\mbox{[}1\mbox{]})
+\item 
+\mbox{\hyperlink{namespacepy__cf_afad52720f341e377c226fbf512d4128d}{cigarstr}} = line.\+split(\textquotesingle{}\textbackslash{}t\textquotesingle{})\mbox{[}5\mbox{]}
+\item 
+\mbox{\hyperlink{build_2lib_2cigarfilter_2resources_2plugin__template_2CMakeLists_8txt_ab80b35b67ae623d63a142fdfa3a4cc08}{list}} \mbox{\hyperlink{namespacepy__cf_a13e689de598c41e772bfde070e114e60}{groups}} = \mbox{[}(x,y) for (x,y) in \mbox{\hyperlink{namespacepy__cf_ab48917a8b4041f0359529396e96596c8}{enumerate\+\_\+groups}}(\mbox{\hyperlink{namespacepy__cf_afad52720f341e377c226fbf512d4128d}{cigarstr}})\mbox{]}
+\item 
+dict \mbox{\hyperlink{namespacepy__cf_a31c0c6ee11d17cdc20733b33223d94b0}{CIGAR}} = \{"{}M"{}\+:0, "{}="{}\+:0, "{}I"{}\+:0, "{}X"{}\+:0, "{}D"{}\+:0, "{}H"{}\+:0, "{}S"{}\+:0, "{}P"{}\+:0, "{}N"{}\+:0\}
+\item 
+dict \mbox{\hyperlink{namespacepy__cf_a4ac8c45dd5d933bd75be730c314ee8e3}{matches}} = \mbox{\hyperlink{namespacepy__cf_a31c0c6ee11d17cdc20733b33223d94b0}{CIGAR}}\mbox{[}"{}M"{}\mbox{]} + \mbox{\hyperlink{namespacepy__cf_a31c0c6ee11d17cdc20733b33223d94b0}{CIGAR}}\mbox{[}"{}="{}\mbox{]}
+\item 
+dict \mbox{\hyperlink{namespacepy__cf_a1fefad3b6fb9475e5b8dadcca9255a4f}{seqlen}} = \mbox{\hyperlink{namespacepy__cf_a4ac8c45dd5d933bd75be730c314ee8e3}{matches}} + \mbox{\hyperlink{namespacepy__cf_a31c0c6ee11d17cdc20733b33223d94b0}{CIGAR}}\mbox{[}"{}I"{}\mbox{]} + \mbox{\hyperlink{namespacepy__cf_a31c0c6ee11d17cdc20733b33223d94b0}{CIGAR}}\mbox{[}"{}S"{}\mbox{]} + \mbox{\hyperlink{namespacepy__cf_a31c0c6ee11d17cdc20733b33223d94b0}{CIGAR}}\mbox{[}"{}H"{}\mbox{]} + \mbox{\hyperlink{namespacepy__cf_a31c0c6ee11d17cdc20733b33223d94b0}{CIGAR}}\mbox{[}"{}N"{}\mbox{]}
+\item 
+dict \mbox{\hyperlink{namespacepy__cf_a0ecad0490d8a44b27504eb14dc6b83fd}{reflen}} = \mbox{\hyperlink{namespacepy__cf_a4ac8c45dd5d933bd75be730c314ee8e3}{matches}} + \mbox{\hyperlink{namespacepy__cf_a31c0c6ee11d17cdc20733b33223d94b0}{CIGAR}}\mbox{[}"{}D"{}\mbox{]} +\mbox{\hyperlink{namespacepy__cf_a31c0c6ee11d17cdc20733b33223d94b0}{CIGAR}}\mbox{[}"{}N"{}\mbox{]}
+\item 
+tuple \mbox{\hyperlink{namespacepy__cf_a535e9b80f48dfb8f0015725274b5941a}{identity}} = (2 \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{namespacepy__cf_a4ac8c45dd5d933bd75be730c314ee8e3}{matches}}) / (\mbox{\hyperlink{namespacepy__cf_a1fefad3b6fb9475e5b8dadcca9255a4f}{seqlen}} + \mbox{\hyperlink{namespacepy__cf_a0ecad0490d8a44b27504eb14dc6b83fd}{reflen}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacepy__cf_ab48917a8b4041f0359529396e96596c8}\label{namespacepy__cf_ab48917a8b4041f0359529396e96596c8} 
+\index{py\_cf@{py\_cf}!enumerate\_groups@{enumerate\_groups}}
+\index{enumerate\_groups@{enumerate\_groups}!py\_cf@{py\_cf}}
+\doxysubsubsection{\texorpdfstring{enumerate\_groups()}{enumerate\_groups()}}
+{\footnotesize\ttfamily py\+\_\+cf.\+enumerate\+\_\+groups (\begin{DoxyParamCaption}\item[{}]{cigarstring }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{namespacepy__cf_a31c0c6ee11d17cdc20733b33223d94b0}\label{namespacepy__cf_a31c0c6ee11d17cdc20733b33223d94b0} 
+\index{py\_cf@{py\_cf}!CIGAR@{CIGAR}}
+\index{CIGAR@{CIGAR}!py\_cf@{py\_cf}}
+\doxysubsubsection{\texorpdfstring{CIGAR}{CIGAR}}
+{\footnotesize\ttfamily dict py\+\_\+cf.\+CIGAR = \{"{}M"{}\+:0, "{}="{}\+:0, "{}I"{}\+:0, "{}X"{}\+:0, "{}D"{}\+:0, "{}H"{}\+:0, "{}S"{}\+:0, "{}P"{}\+:0, "{}N"{}\+:0\}}
+
+\Hypertarget{namespacepy__cf_afad52720f341e377c226fbf512d4128d}\label{namespacepy__cf_afad52720f341e377c226fbf512d4128d} 
+\index{py\_cf@{py\_cf}!cigarstr@{cigarstr}}
+\index{cigarstr@{cigarstr}!py\_cf@{py\_cf}}
+\doxysubsubsection{\texorpdfstring{cigarstr}{cigarstr}}
+{\footnotesize\ttfamily py\+\_\+cf.\+cigarstr = line.\+split(\textquotesingle{}\textbackslash{}t\textquotesingle{})\mbox{[}5\mbox{]}}
+
+\Hypertarget{namespacepy__cf_a13e689de598c41e772bfde070e114e60}\label{namespacepy__cf_a13e689de598c41e772bfde070e114e60} 
+\index{py\_cf@{py\_cf}!groups@{groups}}
+\index{groups@{groups}!py\_cf@{py\_cf}}
+\doxysubsubsection{\texorpdfstring{groups}{groups}}
+{\footnotesize\ttfamily \mbox{\hyperlink{build_2lib_2cigarfilter_2resources_2plugin__template_2CMakeLists_8txt_ab80b35b67ae623d63a142fdfa3a4cc08}{list}} py\+\_\+cf.\+groups = \mbox{[}(x,y) for (x,y) in \mbox{\hyperlink{namespacepy__cf_ab48917a8b4041f0359529396e96596c8}{enumerate\+\_\+groups}}(\mbox{\hyperlink{namespacepy__cf_afad52720f341e377c226fbf512d4128d}{cigarstr}})\mbox{]}}
+
+\Hypertarget{namespacepy__cf_a535e9b80f48dfb8f0015725274b5941a}\label{namespacepy__cf_a535e9b80f48dfb8f0015725274b5941a} 
+\index{py\_cf@{py\_cf}!identity@{identity}}
+\index{identity@{identity}!py\_cf@{py\_cf}}
+\doxysubsubsection{\texorpdfstring{identity}{identity}}
+{\footnotesize\ttfamily tuple py\+\_\+cf.\+identity = (2 \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{namespacepy__cf_a4ac8c45dd5d933bd75be730c314ee8e3}{matches}}) / (\mbox{\hyperlink{namespacepy__cf_a1fefad3b6fb9475e5b8dadcca9255a4f}{seqlen}} + \mbox{\hyperlink{namespacepy__cf_a0ecad0490d8a44b27504eb14dc6b83fd}{reflen}})}
+
+\Hypertarget{namespacepy__cf_a4ac8c45dd5d933bd75be730c314ee8e3}\label{namespacepy__cf_a4ac8c45dd5d933bd75be730c314ee8e3} 
+\index{py\_cf@{py\_cf}!matches@{matches}}
+\index{matches@{matches}!py\_cf@{py\_cf}}
+\doxysubsubsection{\texorpdfstring{matches}{matches}}
+{\footnotesize\ttfamily dict py\+\_\+cf.\+matches = \mbox{\hyperlink{namespacepy__cf_a31c0c6ee11d17cdc20733b33223d94b0}{CIGAR}}\mbox{[}"{}M"{}\mbox{]} + \mbox{\hyperlink{namespacepy__cf_a31c0c6ee11d17cdc20733b33223d94b0}{CIGAR}}\mbox{[}"{}="{}\mbox{]}}
+
+\Hypertarget{namespacepy__cf_a0ecad0490d8a44b27504eb14dc6b83fd}\label{namespacepy__cf_a0ecad0490d8a44b27504eb14dc6b83fd} 
+\index{py\_cf@{py\_cf}!reflen@{reflen}}
+\index{reflen@{reflen}!py\_cf@{py\_cf}}
+\doxysubsubsection{\texorpdfstring{reflen}{reflen}}
+{\footnotesize\ttfamily dict py\+\_\+cf.\+reflen = \mbox{\hyperlink{namespacepy__cf_a4ac8c45dd5d933bd75be730c314ee8e3}{matches}} + \mbox{\hyperlink{namespacepy__cf_a31c0c6ee11d17cdc20733b33223d94b0}{CIGAR}}\mbox{[}"{}D"{}\mbox{]} +\mbox{\hyperlink{namespacepy__cf_a31c0c6ee11d17cdc20733b33223d94b0}{CIGAR}}\mbox{[}"{}N"{}\mbox{]}}
+
+\Hypertarget{namespacepy__cf_a1fefad3b6fb9475e5b8dadcca9255a4f}\label{namespacepy__cf_a1fefad3b6fb9475e5b8dadcca9255a4f} 
+\index{py\_cf@{py\_cf}!seqlen@{seqlen}}
+\index{seqlen@{seqlen}!py\_cf@{py\_cf}}
+\doxysubsubsection{\texorpdfstring{seqlen}{seqlen}}
+{\footnotesize\ttfamily dict py\+\_\+cf.\+seqlen = \mbox{\hyperlink{namespacepy__cf_a4ac8c45dd5d933bd75be730c314ee8e3}{matches}} + \mbox{\hyperlink{namespacepy__cf_a31c0c6ee11d17cdc20733b33223d94b0}{CIGAR}}\mbox{[}"{}I"{}\mbox{]} + \mbox{\hyperlink{namespacepy__cf_a31c0c6ee11d17cdc20733b33223d94b0}{CIGAR}}\mbox{[}"{}S"{}\mbox{]} + \mbox{\hyperlink{namespacepy__cf_a31c0c6ee11d17cdc20733b33223d94b0}{CIGAR}}\mbox{[}"{}H"{}\mbox{]} + \mbox{\hyperlink{namespacepy__cf_a31c0c6ee11d17cdc20733b33223d94b0}{CIGAR}}\mbox{[}"{}N"{}\mbox{]}}
+
+\Hypertarget{namespacepy__cf_acf715c0f8c471607dfbe7253c8997747}\label{namespacepy__cf_acf715c0f8c471607dfbe7253c8997747} 
+\index{py\_cf@{py\_cf}!threshold@{threshold}}
+\index{threshold@{threshold}!py\_cf@{py\_cf}}
+\doxysubsubsection{\texorpdfstring{threshold}{threshold}}
+{\footnotesize\ttfamily float py\+\_\+cf.\+threshold = float(sys.\+argv\mbox{[}1\mbox{]})}
+

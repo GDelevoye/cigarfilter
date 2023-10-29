@@ -1,0 +1,259 @@
+\chapter{My Project}
+\hypertarget{index}{}\label{index}\index{My Project@{My Project}}
+\label{index_md_README}%
+\Hypertarget{index_md_README}%
+ \href{https://dl.circleci.com/status-badge/redirect/gh/GDelevoye/cigarfilter/tree/main}{\texttt{ }}\hypertarget{index_autotoc_md1}{}\doxysection{\texorpdfstring{cigarfilter}{cigarfilter}}\label{index_autotoc_md1}
+\DoxyHorRuler{0}
+
+
+~\newline
+ {\bfseries{ A fast C++ tool to filter .bam files by CIGAR strings }}~\newline
+ \href{https://github.com/GDelevoye/cigarfilter/wiki}{\texttt{ Wiki}} \href{https://github.com/GDelevoye/cigarfilter/wiki}{\texttt{ }} \texorpdfstring{$\vert$}{|} \href{https://github.com/GDelevoye/cigarfilter/wiki/2.-Quick-start}{\texttt{ Quick start tutorial}} \texorpdfstring{$\vert$}{|} \href{https://github.com/GDelevoye/cigarfilter/wiki/4.-Create-your-own-filters}{\texttt{ Examples}} ~\newline
+~\newline
+ 
+
+\DoxyHorRuler{0}
+
+
+\begin{quote}
+This page contains only explanations for a quick start. For more advanced usage, please see \href{https://github.com/GDelevoye/cigarfilter/wiki}{\texttt{ the wiki}} \end{quote}
+
+
+Please do not hesitate to \href{https://github.com/GDelevoye/cigarfilter/issues}{\texttt{ open an issue}} if you find any bug, want a feature, or if you have any question.
+
+PRs are welcome. If you want to contribute, some guidelines and proposals are avaiable \href{https://github.com/GDelevoye/cigarfilter/wiki/7.-Contribute}{\texttt{ here}}.\hypertarget{index_autotoc_md2}{}\doxysection{\texorpdfstring{Motivation}{Motivation}}\label{index_autotoc_md2}
+
+\begin{DoxyItemize}
+\item The \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}.sam\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} file format is a widely-\/spread standard in bioinformatics to store aligned NGS reads. \texorpdfstring{$\ast$}{*}\+Its full description can be found \href{https://samtools.github.io/hts-specs/SAMv1.pdf}{\texttt{ here}}
+\item The 5th field of the file (0-\/indexing) stores what is called a \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}"{}\+CIGAR string"{}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} (see \href{https://sites.google.com/site/bioinformaticsremarks/bioinfo/sam-bam-format/what-is-a-cigar}{\texttt{ 1}}, \href{https://samtools.github.io/hts-specs/SAMv1.pdf}{\texttt{ 2}}, \href{https://jef.works/blog/2017/03/28/CIGAR-strings-for-dummies/}{\texttt{ 3}} for details)
+\begin{DoxyItemize}
+\item It corresponds to how the read mapped on the reference genome.
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+
+
+People often handle the CIGAR strings with tricky {\bfseries{regex/awk/grep\mbox{[}...\mbox{]} combinations}}. But there are cases where it gets virtually impossible. Example \+:
+
+\begin{quote}
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} \+\_\+"{}\+I want to filter all reads that have only one intron whose size is between 25nt and 50nt, while the rest of the read matches perfectly, except maybe some soft-\/clipping at the edges."{}\+\_\+ \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} \end{quote}
+In such situations, people use {\bfseries{Python/\+R/\+Perl scipts}}, that are much more expressive. But it can be very slow for big datasets (\texorpdfstring{$>$}{>}100Gb).
+
+{\bfseries{C++ would have a faster runtime}}, but it comes with many hassles -\/ especially when you want to deploy it in a cloud/cluster computing environment.
+
+This projects aims to simplify the development/deployment of such filters coded in C++.\hypertarget{index_autotoc_md3}{}\doxysection{\texorpdfstring{Quick start}{Quick start}}\label{index_autotoc_md3}
+\hypertarget{index_autotoc_md4}{}\doxysubsection{\texorpdfstring{Step 1. Installation}{Step 1. Installation}}\label{index_autotoc_md4}
+\hypertarget{index_autotoc_md5}{}\doxysubsubsection{\texorpdfstring{1.\+1 \+: Install $<$a href="{}https\+://github.\+com/conda-\/forge/miniforge"{} $>$mamba$<$/a$>$ (preferred) or $<$a href="{}https\+://docs.\+conda.\+io/en/latest/"{} $>$conda$<$/a$>$ (deprecated)}{1.1 : Install <a href="https://github.com/conda-forge/miniforge" >mamba</a> (preferred) or <a href="https://docs.conda.io/en/latest/" >conda</a> (deprecated)}}\label{index_autotoc_md5}
+\href{https://github.com/conda-forge/miniforge}{\texttt{ Mamba}} is a fast/efficient alternative to the well-\/known \href{https://docs.conda.io/en/latest/}{\texttt{ conda}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{wget\ "{}https://github.com/conda-\/forge/miniforge/releases/latest/download/Miniforge3-\/\$(uname)-\/\$(uname\ -\/m).sh"{}}
+\DoxyCodeLine{bash\ Miniforge3-\/\$(uname)-\/\$(uname\ -\/m).sh}
+
+\end{DoxyCode}
+
+
+Once it is done, {\bfseries{Restart the terminal}}
+
+\begin{quote}
+If you don\textquotesingle{}t do it, you\textquotesingle{}ll have problems \end{quote}
+\hypertarget{index_autotoc_md6}{}\doxysubsubsection{\texorpdfstring{1.\+2 Build and install the package with mamba}{1.2 Build and install the package with mamba}}\label{index_autotoc_md6}
+Ensure that you are using mamba instead of conda, and then \+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{git\ clone\ https://github.com/GDelevoye/cigarfilter/}
+\DoxyCodeLine{cd\ cigarfilter}
+\DoxyCodeLine{mamba\ create\ -\/n\ cf\ cxx-\/compiler\ cmake\ make\ pip\ "{}conan<2"{}\ boa\ -\/c\ conda-\/forge}
+\DoxyCodeLine{mamba\ actvate\ cf}
+\DoxyCodeLine{conda\ mambabuild\ ./conda-\/recipe/\ -\/c\ conda-\/forge}
+\DoxyCodeLine{mamba\ install\ -\/c\ local\ cigarfilter}
+
+\end{DoxyCode}
+\hypertarget{index_autotoc_md7}{}\doxysubsection{\texorpdfstring{Step 2 \+: Check how to use / Test that everything works}{Step 2 : Check how to use / Test that everything works}}\label{index_autotoc_md7}
+Make sure that you are using the "{}cf"{} mamba environment that was created in the previous script
+
+The main program \+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(base)\ delevoye@Dell-\/G15-\/5530:\string~/cigarfilter\$\ mamba\ activate\ cf}
+\DoxyCodeLine{(cf)\ delevoye@Dell-\/G15-\/5530:\string~/cigarfilter\$\ cigarfilter\ -\/h}
+\DoxyCodeLine{USAGE:}
+\DoxyCodeLine{\ \ cigarfilter\ [-\/?|-\/h|-\/-\/help]\ [-\/f|-\/-\/filter\ <filter\ name>]\ [-\/p|-\/-\/print\_header\ <bool>]}
+\DoxyCodeLine{}
+\DoxyCodeLine{Display\ usage\ information.}
+\DoxyCodeLine{}
+\DoxyCodeLine{OPTIONS,\ ARGUMENTS:}
+\DoxyCodeLine{\ \ -\/?,\ -\/h,\ -\/-\/help\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\ \ -\/f,\ -\/-\/filter\ <filter\ name>}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Use\ "{}cigarfilter\_config\ help"{}\ for\ more\ info.}
+\DoxyCodeLine{\ \ -\/p,\ -\/-\/print\_header\ <bool>}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ When\ set\ to\ false,\ the\ header\ is\ not\ printed.\ <default:\ TRUE>}
+
+\end{DoxyCode}
+
+
+The companion software to handle the plugins \+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(cf)\ delevoye@Dell-\/G15-\/5530:\string~/cigarfilter\$\ cigarfilter\_config\ -\/h}
+\DoxyCodeLine{\ \ *\ help\ :}
+\DoxyCodeLine{\ \ \ \ \ Displays\ this\ help}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ *\ pluginpath\ :}
+\DoxyCodeLine{\ \ \ \ \ Displays\ the\ path\ were\ filters\ are\ stored.\ Manually\ modify\ them\ only\ at\ your\ own\ risks.}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ *\ list\ :}
+\DoxyCodeLine{\ \ \ \ \ Lists\ all\ available\ filters.}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ *\ add\ :}
+\DoxyCodeLine{\ \ \ \ \ Adds\ a\ filter\ from\ a\ .cpp\ file\ (see\ README\ online\ at\ https://github.com/GDelevoye/cigarfilter).}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ *\ remove\ :}
+\DoxyCodeLine{\ \ \ \ \ Removes\ a\ filter.\ Example\ :\ "{}cigarfilter\_config\ remove\ default"{}.}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ *\ clean\ :}
+\DoxyCodeLine{\ \ \ \ \ Cleans\ all\ logs\ and\ temporary\ files.}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ *\ purge\ :}
+\DoxyCodeLine{\ \ \ \ \ Cleans\ all\ logs,\ temporary\ files\ and\ all\ filters\ except\ the\ default\ one.}
+
+\end{DoxyCode}
+
+
+Run the automated tests to make sure (among other things) that the two software can communicate correctly \+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(cf)\ delevoye@Dell-\/G15-\/5530:\string~/cigarfilter\$\ cigarfilter\_test}
+\DoxyCodeLine{Running\ main()\ from\ /home/delevoye/.conan/data/gtest/1.12.1/\_/\_/build/bd0690086619c54f81a8365940843110bf637ce7/src/googletest/src/gtest\_main.cc}
+\DoxyCodeLine{[==========]\ Running\ 20\ tests\ from\ 3\ test\ suites.}
+\DoxyCodeLine{[-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/]\ Global\ test\ environment\ set-\/up.}
+\DoxyCodeLine{[-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/]\ 12\ tests\ from\ cigar}
+\DoxyCodeLine{[\ RUN\ \ \ \ \ \ ]\ cigar.t\_listdigit}
+\DoxyCodeLine{[\ \ \ \ \ \ \ OK\ ]\ cigar.t\_listdigit\ (0\ ms)}
+\DoxyCodeLine{[\ RUN\ \ \ \ \ \ ]\ cigar.t\_eq}
+\DoxyCodeLine{[\ \ \ \ \ \ \ OK\ ]\ cigar.t\_eq\ (0\ ms)}
+\DoxyCodeLine{[\ RUN\ \ \ \ \ \ ]\ cigar.t\_empty}
+\DoxyCodeLine{[\ \ \ \ \ \ \ OK\ ]\ cigar.t\_empty\ (0\ ms)}
+\DoxyCodeLine{[\ RUN\ \ \ \ \ \ ]\ cigar.t\_S}
+\DoxyCodeLine{[\ \ \ \ \ \ \ OK\ ]\ cigar.t\_S\ (0\ ms)}
+\DoxyCodeLine{[\ RUN\ \ \ \ \ \ ]\ cigar.t\_D}
+\DoxyCodeLine{[\ \ \ \ \ \ \ OK\ ]\ cigar.t\_D\ (0\ ms)}
+\DoxyCodeLine{[\ RUN\ \ \ \ \ \ ]\ cigar.t\_I}
+\DoxyCodeLine{[\ \ \ \ \ \ \ OK\ ]\ cigar.t\_I\ (0\ ms)}
+\DoxyCodeLine{[\ RUN\ \ \ \ \ \ ]\ cigar.t\_X}
+\DoxyCodeLine{[\ \ \ \ \ \ \ OK\ ]\ cigar.t\_X\ (0\ ms)}
+\DoxyCodeLine{[\ RUN\ \ \ \ \ \ ]\ cigar.t\_N}
+\DoxyCodeLine{[\ \ \ \ \ \ \ OK\ ]\ cigar.t\_N\ (0\ ms)}
+\DoxyCodeLine{[\ RUN\ \ \ \ \ \ ]\ cigar.t\_P}
+\DoxyCodeLine{[\ \ \ \ \ \ \ OK\ ]\ cigar.t\_P\ (0\ ms)}
+\DoxyCodeLine{[\ RUN\ \ \ \ \ \ ]\ cigar.t\_H}
+\DoxyCodeLine{[\ \ \ \ \ \ \ OK\ ]\ cigar.t\_H\ (0\ ms)}
+\DoxyCodeLine{[\ RUN\ \ \ \ \ \ ]\ cigar.t\_M}
+\DoxyCodeLine{[\ \ \ \ \ \ \ OK\ ]\ cigar.t\_M\ (0\ ms)}
+\DoxyCodeLine{[\ RUN\ \ \ \ \ \ ]\ cigar.complex\_1}
+\DoxyCodeLine{[\ \ \ \ \ \ \ OK\ ]\ cigar.complex\_1\ (0\ ms)}
+\DoxyCodeLine{[-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/]\ 12\ tests\ from\ cigar\ (0\ ms\ total)}
+\DoxyCodeLine{}
+\DoxyCodeLine{[-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/]\ 2\ tests\ from\ plugin\_helpers}
+\DoxyCodeLine{[\ RUN\ \ \ \ \ \ ]\ plugin\_helpers.plugindir}
+\DoxyCodeLine{[\ \ \ \ \ \ \ OK\ ]\ plugin\_helpers.plugindir\ (16\ ms)}
+\DoxyCodeLine{[\ RUN\ \ \ \ \ \ ]\ plugin\_helpers.get\_default\_plugin}
+\DoxyCodeLine{[\ \ \ \ \ \ \ OK\ ]\ plugin\_helpers.get\_default\_plugin\ (17\ ms)}
+\DoxyCodeLine{[-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/]\ 2\ tests\ from\ plugin\_helpers\ (33\ ms\ total)}
+\DoxyCodeLine{}
+\DoxyCodeLine{[-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/]\ 6\ tests\ from\ ExampleTest}
+\DoxyCodeLine{[\ RUN\ \ \ \ \ \ ]\ ExampleTest.iterate\_groups\_t}
+\DoxyCodeLine{[\ \ \ \ \ \ \ OK\ ]\ ExampleTest.iterate\_groups\_t\ (51\ ms)}
+\DoxyCodeLine{[\ RUN\ \ \ \ \ \ ]\ ExampleTest.default\_t}
+\DoxyCodeLine{[\ \ \ \ \ \ \ OK\ ]\ ExampleTest.default\_t\ (51\ ms)}
+\DoxyCodeLine{[\ RUN\ \ \ \ \ \ ]\ ExampleTest.example1\_t}
+\DoxyCodeLine{[\ \ \ \ \ \ \ OK\ ]\ ExampleTest.example1\_t\ (50\ ms)}
+\DoxyCodeLine{[\ RUN\ \ \ \ \ \ ]\ ExampleTest.example2\_t}
+\DoxyCodeLine{[\ \ \ \ \ \ \ OK\ ]\ ExampleTest.example2\_t\ (50\ ms)}
+\DoxyCodeLine{[\ RUN\ \ \ \ \ \ ]\ ExampleTest.example3\_t}
+\DoxyCodeLine{[\ \ \ \ \ \ \ OK\ ]\ ExampleTest.example3\_t\ (51\ ms)}
+\DoxyCodeLine{[\ RUN\ \ \ \ \ \ ]\ ExampleTest.example4\_t}
+\DoxyCodeLine{ERROR\ :\ Could\ not\ remove\ the\ tmp\ file\ in\ fixture\ "{}StdoutFixture"{}}
+\DoxyCodeLine{[\ \ \ \ \ \ \ OK\ ]\ ExampleTest.example4\_t\ (16\ ms)}
+\DoxyCodeLine{[-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/]\ 6\ tests\ from\ ExampleTest\ (272\ ms\ total)}
+\DoxyCodeLine{}
+\DoxyCodeLine{[-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/]\ Global\ test\ environment\ tear-\/down}
+\DoxyCodeLine{[==========]\ 20\ tests\ from\ 3\ test\ suites\ ran.\ (306\ ms\ total)}
+\DoxyCodeLine{[\ \ PASSED\ \ ]\ 20\ tests.}
+
+\end{DoxyCode}
+\hypertarget{index_autotoc_md8}{}\doxysubsection{\texorpdfstring{Step 3. Copy-\/paste the template in a .\+cpp source file}{Step 3. Copy-paste the template in a .cpp source file}}\label{index_autotoc_md8}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}cigarfilter\_API.hpp"{}}\ \textcolor{comment}{//\ Don't\ worry\ if\ this\ file\ is\ not\ in\ your\ directory}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\mbox{\hyperlink{build_2lib_2cigarfilter_2resources_2plugin__template_2src_2cigarfilter__plugin_8hpp_ad29d154ec6cba43310ff88f038d3e662}{CIGARFILTER\_PLUGIN}}\ (\ \textcolor{comment}{//\ A\ macro\ that\ wraps\ your\ code\ in\ a\ cigarfilter\ plugin.}}
+\DoxyCodeLine{\textcolor{keywordtype}{bool}\ filter(CIGAR\ \&cigar,\ std::string\ \&samline)\{}
+\DoxyCodeLine{\ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{\textcolor{comment}{\ \ \ \ *\ Your\ implementation\ goes\ here}}
+\DoxyCodeLine{\textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ If\ you\ return\ true,\ the\ read\ passes\ the\ filter\ (i.e\ it\ will\ be\ printed)}}
+\DoxyCodeLine{\})\ \textcolor{comment}{//\ Don't\ forget\ to\ close\ the\ parenthesis}}
+
+\end{DoxyCode}
+\hypertarget{index_autotoc_md9}{}\doxysubsection{\texorpdfstring{Step 4. Implement your filter}{Step 4. Implement your filter}}\label{index_autotoc_md9}
+Here is a simple example of implementation \+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}cigarfilter\_API.hpp"{}}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\mbox{\hyperlink{build_2lib_2cigarfilter_2resources_2plugin__template_2src_2cigarfilter__plugin_8hpp_ad29d154ec6cba43310ff88f038d3e662}{CIGARFILTER\_PLUGIN}}\ (}
+\DoxyCodeLine{\textcolor{keywordtype}{bool}\ filter(CIGAR\ \&cigar,\ std::string\ \&samline)\{}
+\DoxyCodeLine{\ \ \ \textcolor{keywordflow}{if}(cigar.D\ >=\ 5)\{\ \textcolor{comment}{//\ If\ the\ read\ contains\ 5\ deletions\ or\ more,\ don't\ print\ it...}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ return\ false;}
+\DoxyCodeLine{\ \ \ \}}
+\DoxyCodeLine{\ \ \ \textcolor{keywordflow}{else}\{}
+\DoxyCodeLine{\ \ \ \ \ \ return\ true;}
+\DoxyCodeLine{\ \ \ \}}
+\DoxyCodeLine{\})}
+
+\end{DoxyCode}
+
+
+See \href{https://github.com/GDelevoye/cigarfilter/wiki/4.-Create-your-own-filters}{\texttt{ here}} for the documentation of the CIGAR class and more examples\hypertarget{index_autotoc_md10}{}\doxysubsection{\texorpdfstring{Step 5. Compile and install your filter}{Step 5. Compile and install your filter}}\label{index_autotoc_md10}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{cigarfilter\_config\ add\ [your\_implementation.cpp]\ [your\_filter\_name]}
+\DoxyCodeLine{\#\ This\ is\ where\ the\ dark\ magic\ happens}
+
+\end{DoxyCode}
+\hypertarget{index_autotoc_md11}{}\doxysubsection{\texorpdfstring{Step 6. Use your filter}{Step 6. Use your filter}}\label{index_autotoc_md11}
+cigarfilter was designed to work well with samtools \+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{samtools\ view\ -\/h\ ./input.bam\ |\ cigarfilter\ -\/f\ your\_filter\_name\ |\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ samtools\ view\ -\/bS\ >\ filtered\_output.bam}
+
+\end{DoxyCode}
+
+
+You can also use it directly on .sam files \+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{cat\ ./input.sam\ |\ cigarfilter\ -\/f\ your\_filter\_name\ >\ filtered\_output.sam}
+
+\end{DoxyCode}
+
+
+By default, cigarfilter transmits the header. If you want to avoid that behaviour you can use "{}-\/-\/print\+\_\+header false"{} \+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ The\ header\ will\ not\ be\ present\ in\ filtered\_output.sam}
+\DoxyCodeLine{cat\ ./input.sam\ |\ cigarfilter\ -\/f\ your\_filter\_name\ -\/-\/print\_header\ false\ >\ filtered\_output.sam}
+
+\end{DoxyCode}
+ 

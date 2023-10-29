@@ -1,0 +1,49 @@
+\doxysection{src/lib/\+CIGAR.hpp File Reference}
+\hypertarget{CIGAR_8hpp}{}\label{CIGAR_8hpp}\index{src/lib/CIGAR.hpp@{src/lib/CIGAR.hpp}}
+
+
+Implementation of the CIGAR parsing.  
+
+
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$map$>$}\newline
+{\ttfamily \#include $<$set$>$}\newline
+{\ttfamily \#include "{}cigarfilter\+\_\+plugin.\+hpp"{}}\newline
+Include dependency graph for CIGAR.\+hpp\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacecf}{cf}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+size\+\_\+t \mbox{\hyperlink{namespacecf_a3481ae25b51113b78dd0c221fd6e38fd}{cf\+::listdigits\+\_\+to\+\_\+number}} (std\+::vector$<$ int $>$ listdigits)
+\begin{DoxyCompactList}\small\item\em From a vector of int \mbox{[}1,4,5,6\mbox{]} (for instance), returns 1456. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structcigarfilter__plugin_1_1CIGAR}{cigarfilter\+\_\+plugin\+::\+CIGAR}} \mbox{\hyperlink{namespacecf_a0c14fc17770cce1509ef587cd952b0a8}{cf\+::get\+\_\+\+CIGAR}} (const std\+::string \&inputstring)
+\begin{DoxyCompactList}\small\item\em Returns the total number of insertions, deletions, etc... In a .sam line. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static size\+\_\+t \mbox{\hyperlink{namespacecf_ae20676cc51b82e5cfad0b3dd136c03d7}{cf\+::pow10}} \mbox{[}10\mbox{]}
+\begin{DoxyCompactList}\small\item\em Compilation-\/time optimization so that we don\textquotesingle{}t compute pows of floats (or double) at runtime. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementation of the CIGAR parsing. 
+
+\begin{DoxyWarning}{Warning}
+Contains some hard-\/coded compile-\/time optimizations and relies on a correct CIGAR 
+\end{DoxyWarning}
+\begin{DoxyAuthor}{Author}
+DELEVOYE Guillaume 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+Nov 2022 
+\end{DoxyDate}

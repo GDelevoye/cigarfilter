@@ -1,0 +1,11 @@
+digraph "cf::get_CIGAR"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="LR";
+  Node1 [id="Node000001",label="cf::get_CIGAR",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="Returns the total number of insertions, deletions, etc... In a .sam line."];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="cf::listdigits_to_number",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$namespacecf.html#a3481ae25b51113b78dd0c221fd6e38fd",tooltip="From a vector of int [1,4,5,6] (for instance), returns 1456."];
+}

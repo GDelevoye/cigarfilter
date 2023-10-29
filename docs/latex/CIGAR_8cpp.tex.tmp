@@ -1,0 +1,20 @@
+\doxysection{src/lib/\+CIGAR.cpp File Reference}
+\hypertarget{CIGAR_8cpp}{}\label{CIGAR_8cpp}\index{src/lib/CIGAR.cpp@{src/lib/CIGAR.cpp}}
+{\ttfamily \#include "{}CIGAR.\+hpp"{}}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+Include dependency graph for CIGAR.\+cpp\+:
+% FIG 0
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacecf}{cf}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+size\+\_\+t \mbox{\hyperlink{namespacecf_a3481ae25b51113b78dd0c221fd6e38fd}{cf\+::listdigits\+\_\+to\+\_\+number}} (std\+::vector$<$ int $>$ listdigits)
+\begin{DoxyCompactList}\small\item\em From a vector of int \mbox{[}1,4,5,6\mbox{]} (for instance), returns 1456. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structcigarfilter__plugin_1_1CIGAR}{cigarfilter\+\_\+plugin\+::\+CIGAR}} \mbox{\hyperlink{namespacecf_a0c14fc17770cce1509ef587cd952b0a8}{cf\+::get\+\_\+\+CIGAR}} (const std\+::string \&inputstring)
+\begin{DoxyCompactList}\small\item\em Returns the total number of insertions, deletions, etc... In a .sam line. \end{DoxyCompactList}\end{DoxyCompactItemize}

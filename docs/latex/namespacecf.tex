@@ -1,0 +1,145 @@
+\doxysection{cf Namespace Reference}
+\hypertarget{namespacecf}{}\label{namespacecf}\index{cf@{cf}}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+size\+\_\+t \mbox{\hyperlink{namespacecf_a3481ae25b51113b78dd0c221fd6e38fd}{listdigits\+\_\+to\+\_\+number}} (std\+::vector$<$ int $>$ listdigits)
+\begin{DoxyCompactList}\small\item\em From a vector of int \mbox{[}1,4,5,6\mbox{]} (for instance), returns 1456. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structcigarfilter__plugin_1_1CIGAR}{cigarfilter\+\_\+plugin\+::\+CIGAR}} \mbox{\hyperlink{namespacecf_a0c14fc17770cce1509ef587cd952b0a8}{get\+\_\+\+CIGAR}} (const std\+::string \&inputstring)
+\begin{DoxyCompactList}\small\item\em Returns the total number of insertions, deletions, etc... In a .sam line. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{namespacecf_ade72a9a442854a370d4781d73ca6a3d6}{exec}} (const char \texorpdfstring{$\ast$}{*}cmd)
+\begin{DoxyCompactList}\small\item\em Executes a command and returns its standard output. See \href{/https://stackoverflow.com/questions/478898/how-do-i-execute-a-command-and-get-the-output-of-the-command-within-c-using-po}{\texttt{ / This SO post}} \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{namespacecf_a53f3de1ebcc48955d8b459877db0ee09}{get\+\_\+plugin\+\_\+dir}} ()
+\begin{DoxyCompactList}\small\item\em Returns the directory where the plugins are. Requires a correct installation of cigarfilter\+\_\+config. \end{DoxyCompactList}\item 
+boost\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcigarfilter__plugin}{cigarfilter\+\_\+plugin}} $>$ \mbox{\hyperlink{namespacecf_ab240c595e864f911554b128f4633529a}{get\+\_\+plugin}} (std\+::string name)
+\begin{DoxyCompactList}\small\item\em Returns a shared pointer to an object that contains the user-\/defined filter. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static size\+\_\+t \mbox{\hyperlink{namespacecf_ae20676cc51b82e5cfad0b3dd136c03d7}{pow10}} \mbox{[}10\mbox{]}
+\begin{DoxyCompactList}\small\item\em Compilation-\/time optimization so that we don\textquotesingle{}t compute pows of floats (or double) at runtime. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacecf_ade72a9a442854a370d4781d73ca6a3d6}\label{namespacecf_ade72a9a442854a370d4781d73ca6a3d6} 
+\index{cf@{cf}!exec@{exec}}
+\index{exec@{exec}!cf@{cf}}
+\doxysubsubsection{\texorpdfstring{exec()}{exec()}}
+{\footnotesize\ttfamily std\+::string cf\+::exec (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{cmd }\end{DoxyParamCaption})}
+
+
+
+Executes a command and returns its standard output. See \href{/https://stackoverflow.com/questions/478898/how-do-i-execute-a-command-and-get-the-output-of-the-command-within-c-using-po}{\texttt{ / This SO post}} 
+
+\begin{DoxyWarning}{Warning}
+Does not check for the standard error 
+\end{DoxyWarning}
+Here is the caller graph for this function\+:
+% FIG 0
+\Hypertarget{namespacecf_a0c14fc17770cce1509ef587cd952b0a8}\label{namespacecf_a0c14fc17770cce1509ef587cd952b0a8} 
+\index{cf@{cf}!get\_CIGAR@{get\_CIGAR}}
+\index{get\_CIGAR@{get\_CIGAR}!cf@{cf}}
+\doxysubsubsection{\texorpdfstring{get\_CIGAR()}{get\_CIGAR()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structcigarfilter__plugin_1_1CIGAR}{cigarfilter\+\_\+plugin\+::\+CIGAR}} cf\+::get\+\_\+\+CIGAR (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{inputstring }\end{DoxyParamCaption})}
+
+
+
+Returns the total number of insertions, deletions, etc... In a .sam line. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em inputstring} & \+: A .sam line\\
+\hline
+\end{DoxyParams}
+If a group name is not in \{"{}\+M"{},"{}="{},"{}\+I"{},"{}\+D"{},"{}\+X"{},"{}\+H"{},"{}\+S"{},"{}\+P"{},"{}\+N"{}\}, cigar.\+error = true \begin{DoxyWarning}{Warning}
+The implementation relies mostly on the assumption that the CIGAR string is correct 
+\end{DoxyWarning}
+\begin{DoxyRefDesc}{Todo}
+\item[\mbox{\hyperlink{todo__todo000001}{Todo}}]Better handling of errors \end{DoxyRefDesc}
+Here is the call graph for this function\+:
+% FIG 1
+Here is the caller graph for this function\+:
+% FIG 2
+\Hypertarget{namespacecf_ab240c595e864f911554b128f4633529a}\label{namespacecf_ab240c595e864f911554b128f4633529a} 
+\index{cf@{cf}!get\_plugin@{get\_plugin}}
+\index{get\_plugin@{get\_plugin}!cf@{cf}}
+\doxysubsubsection{\texorpdfstring{get\_plugin()}{get\_plugin()}}
+{\footnotesize\ttfamily boost\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classcigarfilter__plugin}{cigarfilter\+\_\+plugin}} $>$ cf\+::get\+\_\+plugin (\begin{DoxyParamCaption}\item[{std\+::string}]{name }\end{DoxyParamCaption})}
+
+
+
+Returns a shared pointer to an object that contains the user-\/defined filter. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & Name of the plugin (no .so .dll etc) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+boost\+::shared\+\_\+ptr$<$cigarfilter\+\_\+plugin$>$ 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+% FIG 3
+Here is the caller graph for this function\+:
+% FIG 4
+\Hypertarget{namespacecf_a53f3de1ebcc48955d8b459877db0ee09}\label{namespacecf_a53f3de1ebcc48955d8b459877db0ee09} 
+\index{cf@{cf}!get\_plugin\_dir@{get\_plugin\_dir}}
+\index{get\_plugin\_dir@{get\_plugin\_dir}!cf@{cf}}
+\doxysubsubsection{\texorpdfstring{get\_plugin\_dir()}{get\_plugin\_dir()}}
+{\footnotesize\ttfamily std\+::string cf\+::get\+\_\+plugin\+\_\+dir (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the directory where the plugins are. Requires a correct installation of cigarfilter\+\_\+config. 
+
+Here is the call graph for this function\+:
+% FIG 5
+Here is the caller graph for this function\+:
+% FIG 6
+\Hypertarget{namespacecf_a3481ae25b51113b78dd0c221fd6e38fd}\label{namespacecf_a3481ae25b51113b78dd0c221fd6e38fd} 
+\index{cf@{cf}!listdigits\_to\_number@{listdigits\_to\_number}}
+\index{listdigits\_to\_number@{listdigits\_to\_number}!cf@{cf}}
+\doxysubsubsection{\texorpdfstring{listdigits\_to\_number()}{listdigits\_to\_number()}}
+{\footnotesize\ttfamily size\+\_\+t cf\+::listdigits\+\_\+to\+\_\+number (\begin{DoxyParamCaption}\item[{std\+::vector$<$ int $>$}]{listdigits }\end{DoxyParamCaption})}
+
+
+
+From a vector of int \mbox{[}1,4,5,6\mbox{]} (for instance), returns 1456. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em listdigits} & Vector of integers (not templated for other types) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+size\+\_\+t
+\end{DoxyReturn}
+Optimized based on the fact that the vector size is inferior to 10 Here is the caller graph for this function\+:
+% FIG 7
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{namespacecf_ae20676cc51b82e5cfad0b3dd136c03d7}\label{namespacecf_ae20676cc51b82e5cfad0b3dd136c03d7} 
+\index{cf@{cf}!pow10@{pow10}}
+\index{pow10@{pow10}!cf@{cf}}
+\doxysubsubsection{\texorpdfstring{pow10}{pow10}}
+{\footnotesize\ttfamily size\+\_\+t cf\+::pow10\mbox{[}10\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 1,\ 10,\ 100,\ 1000,\ 10000,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 100000,\ 1000000,\ 10000000,\ 100000000,\ 1000000000,}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Compilation-\/time optimization so that we don\textquotesingle{}t compute pows of floats (or double) at runtime. 
+
+\begin{DoxySeeAlso}{See also}
+"{}listdigits\+\_\+to\+\_\+number()"{} 
+\end{DoxySeeAlso}
+\begin{DoxyNote}{Note}
+Although it is hardcoded, it is technically impossible for a group to be \texorpdfstring{$>$}{>}= 1000000000 nt long 
+\end{DoxyNote}

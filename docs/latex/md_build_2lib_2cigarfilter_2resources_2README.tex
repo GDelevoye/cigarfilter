@@ -1,0 +1,18 @@
+\chapter{README}
+\hypertarget{md_build_2lib_2cigarfilter_2resources_2README}{}\label{md_build_2lib_2cigarfilter_2resources_2README}\index{README@{README}}
+This directory is included in the final app during the pip installation (see "{}conda-\/recipe/meta-\/yaml"{}).
+
+Normally, it should be installed in a location where the user have the right to write, which is why I use it as an "{}app directory"{}.
+
+The final user is not supposed to touch manually this directory. It contains the files required for the whole project/\+App to run correctly \+:
+
+
+\begin{DoxyItemize}
+\item "{}plugin"{} is empty right now, but after the compilation of cigarfilter, the examples and default plugins will be placed there by CMake install. New plugins added with cigarfilter\+\_\+config also end up here.
+\item "{}plugin\+\_\+template"{} as its name clearly indicates, contains a ready-\/to-\/use template that will be copy-\/pasted by cigarfilter\+\_\+config in a fresh tmp director when adding a new filter.
+\item "{}test\+\_\+data"{} contains the files required for "{}cigarfilter\+\_\+test"{}
+\end{DoxyItemize}
+
+During the compilation of a new filter with "{}cigarfilter\+\_\+config add"{}, this directory will temporarily contain files or directories that start with the prefix "{}tmp\+\_\+"{}, and that are cleaned at each invocation of "{}cigarfilter\+\_\+config clean"{}.
+
+The same may happen during a "{}cigarfilter\+\_\+test"{} invocation; the standard output of several tests will be redirected here temporarily. 

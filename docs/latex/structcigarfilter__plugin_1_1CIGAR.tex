@@ -1,0 +1,154 @@
+\doxysection{cigarfilter\+\_\+plugin\+::CIGAR Struct Reference}
+\hypertarget{structcigarfilter__plugin_1_1CIGAR}{}\label{structcigarfilter__plugin_1_1CIGAR}\index{cigarfilter\_plugin::CIGAR@{cigarfilter\_plugin::CIGAR}}
+
+
+A simple struct to store the informations parsed from a \doxylink{structcigarfilter__plugin_1_1CIGAR}{CIGAR} string.  
+
+
+
+
+{\ttfamily \#include $<$cigarfilter\+\_\+plugin.\+hpp$>$}
+
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+size\+\_\+t \mbox{\hyperlink{structcigarfilter__plugin_1_1CIGAR_ad56f67fabb9a1b2dcac9e92c0dd631ac}{M}} = 0
+\item 
+size\+\_\+t \mbox{\hyperlink{structcigarfilter__plugin_1_1CIGAR_ac42cce3576d3496a91167b467dc60a7f}{eq}} = 0
+\item 
+size\+\_\+t \mbox{\hyperlink{structcigarfilter__plugin_1_1CIGAR_a690a8ae6136a6a01c27ccf69a874b383}{I}} = 0
+\item 
+size\+\_\+t \mbox{\hyperlink{structcigarfilter__plugin_1_1CIGAR_aaf534d30bc627c5b9e30b8261fb0e3d4}{D}} = 0
+\item 
+size\+\_\+t \mbox{\hyperlink{structcigarfilter__plugin_1_1CIGAR_a55f4e0a5b20ea98e947b77ca35a0c178}{X}} = 0
+\item 
+size\+\_\+t \mbox{\hyperlink{structcigarfilter__plugin_1_1CIGAR_aa24a76d81e717c80f6bf06294f946d86}{H}} = 0
+\item 
+size\+\_\+t \mbox{\hyperlink{structcigarfilter__plugin_1_1CIGAR_a821e52261ceb74848a92e5c37c6450ae}{S}} = 0
+\item 
+size\+\_\+t \mbox{\hyperlink{structcigarfilter__plugin_1_1CIGAR_a9011622f5baaaf56063240120764f43f}{P}} = 0
+\item 
+size\+\_\+t \mbox{\hyperlink{structcigarfilter__plugin_1_1CIGAR_a72527334722fcaae10c825bdcf175b9f}{N}} = 0
+\item 
+bool \mbox{\hyperlink{structcigarfilter__plugin_1_1CIGAR_a02408433e0998bfc84f28d3bd91711e3}{empty}} = false
+\item 
+bool \mbox{\hyperlink{structcigarfilter__plugin_1_1CIGAR_a2c9872503cef8af32750602e277da208}{error}} = false
+\item 
+std\+::vector$<$ std\+::tuple$<$ char, size\+\_\+t $>$ $>$ \mbox{\hyperlink{structcigarfilter__plugin_1_1CIGAR_a8e78046753003f9679c757d37b726018}{groups}}
+\item 
+std\+::string \mbox{\hyperlink{structcigarfilter__plugin_1_1CIGAR_a77697da9ac4d470883f2318fa8972010}{as\+\_\+string}} = "{}"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A simple struct to store the informations parsed from a \doxylink{structcigarfilter__plugin_1_1CIGAR}{CIGAR} string. 
+
+The following links define the \doxylink{structcigarfilter__plugin_1_1CIGAR}{CIGAR} string format
+\begin{DoxyItemize}
+\item \href{https://github.com/NBISweden/GAAS/blob/master/annotation/knowledge/cigar.md}{\texttt{ https\+://github.\+com/\+NBISweden/\+GAAS/blob/master/annotation/knowledge/cigar.\+md}}
+\item \href{https://samtools.github.io/hts-specs/SAMv1.pdf}{\texttt{ https\+://samtools.\+github.\+io/hts-\/specs/\+SAMv1.\+pdf}}
+\item \texorpdfstring{$<$}{<}a href="{}\href{https://sites.google.com/site/bioinformaticsremarks/bioinfo/sam-bam-format/what-is-a-cigar/}{\texttt{ https\+://sites.\+google.\+com/site/bioinformaticsremarks/bioinfo/sam-\/bam-\/format/what-\/is-\/a-\/cigar/}}\texorpdfstring{$>$}{>}\href{https://sites.google.com/site/bioinformaticsremarks/bioinfo/sam-bam-format/what-is-a-cigar/}{\texttt{ https\+://sites.\+google.\+com/site/bioinformaticsremarks/bioinfo/sam-\/bam-\/format/what-\/is-\/a-\/cigar/}}
+\end{DoxyItemize}
+
+\begin{DoxyWarning}{Warning}
+All members are public (struct), therefore you can change them at will; but at your own risks. 
+\end{DoxyWarning}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structcigarfilter__plugin_1_1CIGAR_a77697da9ac4d470883f2318fa8972010}\label{structcigarfilter__plugin_1_1CIGAR_a77697da9ac4d470883f2318fa8972010} 
+\index{cigarfilter\_plugin::CIGAR@{cigarfilter\_plugin::CIGAR}!as\_string@{as\_string}}
+\index{as\_string@{as\_string}!cigarfilter\_plugin::CIGAR@{cigarfilter\_plugin::CIGAR}}
+\doxysubsubsection{\texorpdfstring{as\_string}{as\_string}}
+{\footnotesize\ttfamily std\+::string cigarfilter\+\_\+plugin\+::\+CIGAR\+::as\+\_\+string = "{}"{}}
+
+The original \doxylink{structcigarfilter__plugin_1_1CIGAR}{CIGAR} string. \Hypertarget{structcigarfilter__plugin_1_1CIGAR_aaf534d30bc627c5b9e30b8261fb0e3d4}\label{structcigarfilter__plugin_1_1CIGAR_aaf534d30bc627c5b9e30b8261fb0e3d4} 
+\index{cigarfilter\_plugin::CIGAR@{cigarfilter\_plugin::CIGAR}!D@{D}}
+\index{D@{D}!cigarfilter\_plugin::CIGAR@{cigarfilter\_plugin::CIGAR}}
+\doxysubsubsection{\texorpdfstring{D}{D}}
+{\footnotesize\ttfamily size\+\_\+t cigarfilter\+\_\+plugin\+::\+CIGAR\+::D = 0}
+
+Number of Deleted nucleotides \Hypertarget{structcigarfilter__plugin_1_1CIGAR_a02408433e0998bfc84f28d3bd91711e3}\label{structcigarfilter__plugin_1_1CIGAR_a02408433e0998bfc84f28d3bd91711e3} 
+\index{cigarfilter\_plugin::CIGAR@{cigarfilter\_plugin::CIGAR}!empty@{empty}}
+\index{empty@{empty}!cigarfilter\_plugin::CIGAR@{cigarfilter\_plugin::CIGAR}}
+\doxysubsubsection{\texorpdfstring{empty}{empty}}
+{\footnotesize\ttfamily bool cigarfilter\+\_\+plugin\+::\+CIGAR\+::empty = false}
+
+Set to true if the \doxylink{structcigarfilter__plugin_1_1CIGAR}{CIGAR} string is "{}\texorpdfstring{$\ast$}{*}"{} \Hypertarget{structcigarfilter__plugin_1_1CIGAR_ac42cce3576d3496a91167b467dc60a7f}\label{structcigarfilter__plugin_1_1CIGAR_ac42cce3576d3496a91167b467dc60a7f} 
+\index{cigarfilter\_plugin::CIGAR@{cigarfilter\_plugin::CIGAR}!eq@{eq}}
+\index{eq@{eq}!cigarfilter\_plugin::CIGAR@{cigarfilter\_plugin::CIGAR}}
+\doxysubsubsection{\texorpdfstring{eq}{eq}}
+{\footnotesize\ttfamily size\+\_\+t cigarfilter\+\_\+plugin\+::\+CIGAR\+::eq = 0}
+
+Number of Matched nucleotides \Hypertarget{structcigarfilter__plugin_1_1CIGAR_a2c9872503cef8af32750602e277da208}\label{structcigarfilter__plugin_1_1CIGAR_a2c9872503cef8af32750602e277da208} 
+\index{cigarfilter\_plugin::CIGAR@{cigarfilter\_plugin::CIGAR}!error@{error}}
+\index{error@{error}!cigarfilter\_plugin::CIGAR@{cigarfilter\_plugin::CIGAR}}
+\doxysubsubsection{\texorpdfstring{error}{error}}
+{\footnotesize\ttfamily bool cigarfilter\+\_\+plugin\+::\+CIGAR\+::error = false}
+
+\begin{DoxyWarning}{Warning}
+This catches only a very limited subset of errors. When true, the \doxylink{structcigarfilter__plugin_1_1CIGAR}{CIGAR} is invalid. It is set to true if at least one group is not in \{"{}\+X"{},"{}\+M"{},"{}\+N"{},"{}\+P"{},"{}\+H"{},"{}\+S"{},"{}="{},"{}\+D"{},"{}\+I"{}\} 
+\end{DoxyWarning}
+\Hypertarget{structcigarfilter__plugin_1_1CIGAR_a8e78046753003f9679c757d37b726018}\label{structcigarfilter__plugin_1_1CIGAR_a8e78046753003f9679c757d37b726018} 
+\index{cigarfilter\_plugin::CIGAR@{cigarfilter\_plugin::CIGAR}!groups@{groups}}
+\index{groups@{groups}!cigarfilter\_plugin::CIGAR@{cigarfilter\_plugin::CIGAR}}
+\doxysubsubsection{\texorpdfstring{groups}{groups}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::tuple$<$ char, size\+\_\+t $>$ $>$ cigarfilter\+\_\+plugin\+::\+CIGAR\+::groups}
+
+Each tuple is made of (group\+\_\+type,group\+\_\+size) \Hypertarget{structcigarfilter__plugin_1_1CIGAR_aa24a76d81e717c80f6bf06294f946d86}\label{structcigarfilter__plugin_1_1CIGAR_aa24a76d81e717c80f6bf06294f946d86} 
+\index{cigarfilter\_plugin::CIGAR@{cigarfilter\_plugin::CIGAR}!H@{H}}
+\index{H@{H}!cigarfilter\_plugin::CIGAR@{cigarfilter\_plugin::CIGAR}}
+\doxysubsubsection{\texorpdfstring{H}{H}}
+{\footnotesize\ttfamily size\+\_\+t cigarfilter\+\_\+plugin\+::\+CIGAR\+::H = 0}
+
+Number of Hard-\/clipped nucleotides \Hypertarget{structcigarfilter__plugin_1_1CIGAR_a690a8ae6136a6a01c27ccf69a874b383}\label{structcigarfilter__plugin_1_1CIGAR_a690a8ae6136a6a01c27ccf69a874b383} 
+\index{cigarfilter\_plugin::CIGAR@{cigarfilter\_plugin::CIGAR}!I@{I}}
+\index{I@{I}!cigarfilter\_plugin::CIGAR@{cigarfilter\_plugin::CIGAR}}
+\doxysubsubsection{\texorpdfstring{I}{I}}
+{\footnotesize\ttfamily size\+\_\+t cigarfilter\+\_\+plugin\+::\+CIGAR\+::I = 0}
+
+Number of Inserted nucleotides \Hypertarget{structcigarfilter__plugin_1_1CIGAR_ad56f67fabb9a1b2dcac9e92c0dd631ac}\label{structcigarfilter__plugin_1_1CIGAR_ad56f67fabb9a1b2dcac9e92c0dd631ac} 
+\index{cigarfilter\_plugin::CIGAR@{cigarfilter\_plugin::CIGAR}!M@{M}}
+\index{M@{M}!cigarfilter\_plugin::CIGAR@{cigarfilter\_plugin::CIGAR}}
+\doxysubsubsection{\texorpdfstring{M}{M}}
+{\footnotesize\ttfamily size\+\_\+t cigarfilter\+\_\+plugin\+::\+CIGAR\+::M = 0}
+
+Number of Matched or mismatched nucleotides \Hypertarget{structcigarfilter__plugin_1_1CIGAR_a72527334722fcaae10c825bdcf175b9f}\label{structcigarfilter__plugin_1_1CIGAR_a72527334722fcaae10c825bdcf175b9f} 
+\index{cigarfilter\_plugin::CIGAR@{cigarfilter\_plugin::CIGAR}!N@{N}}
+\index{N@{N}!cigarfilter\_plugin::CIGAR@{cigarfilter\_plugin::CIGAR}}
+\doxysubsubsection{\texorpdfstring{N}{N}}
+{\footnotesize\ttfamily size\+\_\+t cigarfilter\+\_\+plugin\+::\+CIGAR\+::N = 0}
+
+Number of Skipped (or "{}\+Spliced"{}) nucleotides
+
+In c\+DNA-\/to-\/genome alignment, we may want to distinguish introns from deletions in exons. We introduce openation \textquotesingle{}N\textquotesingle{} to represent long skip on the reference sequence. Suppose the spliced alignment is\+: \begin{DoxyVerb}   REF:AGCTAGCATCGTGTCGCCCGTCTAGCATACGCATGATCGACTGTCAGCTAGTCAGACTAGTC
+
+   Read:         GTGTAACCC................................TCAGAATA
+
+   where '...' on the read sequence indicates intron. The CIGAR for this alignment is : 9M32N8M. 
+\end{DoxyVerb}
+ \Hypertarget{structcigarfilter__plugin_1_1CIGAR_a9011622f5baaaf56063240120764f43f}\label{structcigarfilter__plugin_1_1CIGAR_a9011622f5baaaf56063240120764f43f} 
+\index{cigarfilter\_plugin::CIGAR@{cigarfilter\_plugin::CIGAR}!P@{P}}
+\index{P@{P}!cigarfilter\_plugin::CIGAR@{cigarfilter\_plugin::CIGAR}}
+\doxysubsubsection{\texorpdfstring{P}{P}}
+{\footnotesize\ttfamily size\+\_\+t cigarfilter\+\_\+plugin\+::\+CIGAR\+::P = 0}
+
+Number of Padded nucleotides \Hypertarget{structcigarfilter__plugin_1_1CIGAR_a821e52261ceb74848a92e5c37c6450ae}\label{structcigarfilter__plugin_1_1CIGAR_a821e52261ceb74848a92e5c37c6450ae} 
+\index{cigarfilter\_plugin::CIGAR@{cigarfilter\_plugin::CIGAR}!S@{S}}
+\index{S@{S}!cigarfilter\_plugin::CIGAR@{cigarfilter\_plugin::CIGAR}}
+\doxysubsubsection{\texorpdfstring{S}{S}}
+{\footnotesize\ttfamily size\+\_\+t cigarfilter\+\_\+plugin\+::\+CIGAR\+::S = 0}
+
+Number of Soft-\/clipped nucleotides \Hypertarget{structcigarfilter__plugin_1_1CIGAR_a55f4e0a5b20ea98e947b77ca35a0c178}\label{structcigarfilter__plugin_1_1CIGAR_a55f4e0a5b20ea98e947b77ca35a0c178} 
+\index{cigarfilter\_plugin::CIGAR@{cigarfilter\_plugin::CIGAR}!X@{X}}
+\index{X@{X}!cigarfilter\_plugin::CIGAR@{cigarfilter\_plugin::CIGAR}}
+\doxysubsubsection{\texorpdfstring{X}{X}}
+{\footnotesize\ttfamily size\+\_\+t cigarfilter\+\_\+plugin\+::\+CIGAR\+::X = 0}
+
+Number of Substituated nucleotides 
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+build/lib/cigarfilter/resources/plugin\+\_\+template/src/\mbox{\hyperlink{build_2lib_2cigarfilter_2resources_2plugin__template_2src_2cigarfilter__plugin_8hpp}{cigarfilter\+\_\+plugin.\+hpp}}\item 
+cigarfilter/resources/plugin\+\_\+template/src/\mbox{\hyperlink{cigarfilter_2resources_2plugin__template_2src_2cigarfilter__plugin_8hpp}{cigarfilter\+\_\+plugin.\+hpp}}\item 
+include/\mbox{\hyperlink{include_2cigarfilter__plugin_8hpp}{cigarfilter\+\_\+plugin.\+hpp}}\end{DoxyCompactItemize}

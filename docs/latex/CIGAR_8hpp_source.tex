@@ -1,0 +1,30 @@
+\doxysection{CIGAR.\+hpp}
+\hypertarget{CIGAR_8hpp_source}{}\label{CIGAR_8hpp_source}\index{src/lib/CIGAR.hpp@{src/lib/CIGAR.hpp}}
+\mbox{\hyperlink{CIGAR_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#ifndef\ BAMFILTER\_CIGAR\_HPP}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ BAMFILTER\_CIGAR\_HPP}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <set>}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ "{}cigarfilter\_plugin.hpp"{}}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacecf}{cf}}\ \{}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{namespacecf_ae20676cc51b82e5cfad0b3dd136c03d7}{pow10}}[10\ ]\ =\ \{}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ 1,\ 10,\ 100,\ 1000,\ 10000,}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ 100000,\ 1000000,\ 10000000,\ 100000000,\ 1000000000,}
+\DoxyCodeLine{00029\ \};}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00037\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{namespacecf_a3481ae25b51113b78dd0c221fd6e38fd}{listdigits\_to\_number}}(std::vector<int>\ listdigits);}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00047\ \ \ \ \ \mbox{\hyperlink{structcigarfilter__plugin_1_1CIGAR}{cigarfilter\_plugin::CIGAR}}\ \mbox{\hyperlink{namespacecf_a0c14fc17770cce1509ef587cd952b0a8}{get\_CIGAR}}(\textcolor{keyword}{const}\ std::string\ \&inputstring);}
+\DoxyCodeLine{00048\ \}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//BAMFILTER\_CIGAR\_HPP}}
+
+\end{DoxyCode}

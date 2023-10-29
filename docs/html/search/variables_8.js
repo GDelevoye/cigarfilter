@@ -1,0 +1,5 @@
+var searchData=
+[
+  ['link_0',['link',['../CMakeCache_8txt.html#a6d74753f68a5d6b7473ce76161d31778',1,'link:&#160;CMakeCache.txt'],['../cigarfilter_8dir_2link_8txt.html#aa90edac98b889989f2106ea1554b5e86',1,'link:&#160;link.txt'],['../cigarfilter__test_8dir_2link_8txt.html#aa90edac98b889989f2106ea1554b5e86',1,'link:&#160;link.txt'],['../default_8dir_2link_8txt.html#a82144a1a03b781e610a9d5a55eb57625',1,'link:&#160;link.txt'],['../example1_8dir_2link_8txt.html#a82144a1a03b781e610a9d5a55eb57625',1,'link:&#160;link.txt'],['../example2_8dir_2link_8txt.html#a82144a1a03b781e610a9d5a55eb57625',1,'link:&#160;link.txt'],['../example3_8dir_2link_8txt.html#a82144a1a03b781e610a9d5a55eb57625',1,'link:&#160;link.txt'],['../example4_8dir_2link_8txt.html#a82144a1a03b781e610a9d5a55eb57625',1,'link:&#160;link.txt'],['../iterate__groups_8dir_2link_8txt.html#a82144a1a03b781e610a9d5a55eb57625',1,'link:&#160;link.txt']]],
+  ['long_5fdescription_1',['long_description',['../namespacesetup.html#a4cda9dbfb952875376a0749fe08a5bde',1,'setup']]]
+];
