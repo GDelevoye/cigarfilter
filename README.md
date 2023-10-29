@@ -6,7 +6,8 @@
 
 <p align="center">  
   <b> A fast C++ tool to filter .bam files by CIGAR strings </b><br>
-  <a href="https://github.com/GDelevoye/cigarfilter/wiki"> Wiki</a> |
+  <a href="https://github.com/GDelevoye/cigarfilter/wiki"> Wiki</a> <a href="https://github.com/GDelevoye/cigarfilter/wiki" ><img src="docs/wiki.png" alt="drawing" width="50"/></a>
+|
   <a href="https://github.com/GDelevoye/cigarfilter/wiki/2.-Quick-start">Quick start tutorial</a> |
   <a href="https://github.com/GDelevoye/cigarfilter/wiki/4.-Create-your-own-filters">Examples</a>
   <br><br>
@@ -17,11 +18,11 @@
 > This page contains only explanations for a quick start. For more advanced usage, please see [the wiki](https://github.com/GDelevoye/cigarfilter/wiki)
 
 
-Please do not hesitate to [open an issue](https://github.com/GDelevoye/cigarfilter/issues) if you find any bug, want a feature, or if you have any question. 
+Please do not hesitate to [open an issue](https://github.com/GDelevoye/cigarfilter/issues) if you find any bug, want a feature, or if you have any question.
 
 PRs are welcome. If you want to contribute, some guidelines and proposals are avaiable [here](https://github.com/GDelevoye/cigarfilter/wiki/7.-Contribute).
 
-# Motivation 
+# Motivation
 
 * The **.sam** file format is a widely-spread standard in bioinformatics to store aligned NGS reads.
   *Its full description can be found [here](https://samtools.github.io/hts-specs/SAMv1.pdf)
@@ -32,13 +33,13 @@ PRs are welcome. If you want to contribute, some guidelines and proposals are av
 
 ![BAM_presentation](https://user-images.githubusercontent.com/29506993/196156645-bdf7428a-5b9d-45c7-b299-c32f70a773bb.jpg)
 
-People often handle the CIGAR strings with tricky **regex/awk/grep[...] combinations**. But there are cases where it gets virtually impossible. Example : 
+People often handle the CIGAR strings with tricky **regex/awk/grep[...] combinations**. But there are cases where it gets virtually impossible. Example :
 
 > ** _"I want to filter all reads that have only one intron whose size is between 25nt and 50nt, while the rest of the read matches perfectly, except maybe some soft-clipping at the edges."_ **
 
-In such situations, people use **Python/R/Perl scipts**, that are much more expressive. But it can be very slow for big datasets (>100Gb). 
+In such situations, people use **Python/R/Perl scipts**, that are much more expressive. But it can be very slow for big datasets (>100Gb).
 
-**C++ would have a faster runtime**, but it comes with many hassles - especially when you want to deploy it in a cloud/cluster computing environment. 
+**C++ would have a faster runtime**, but it comes with many hassles - especially when you want to deploy it in a cloud/cluster computing environment.
 
 This projects aims to simplify the development/deployment of such filters coded in C++.
 
@@ -94,7 +95,7 @@ OPTIONS, ARGUMENTS:
                           When set to false, the header is not printed. <default: TRUE>
 ```
 
-The companion software to handle the plugins : 
+The companion software to handle the plugins :
 
 
 ```console
@@ -121,7 +122,7 @@ The companion software to handle the plugins :
 	 Cleans all logs, temporary files and all filters except the default one.
 ```
 
-Run the automated tests to make sure (among other things) that the two software can communicate correctly : 
+Run the automated tests to make sure (among other things) that the two software can communicate correctly :
 
 ```console
 (cf) delevoye@Dell-G15-5530:~/cigarfilter$ cigarfilter_test
@@ -188,8 +189,8 @@ ERROR : Could not remove the tmp file in fixture "StdoutFixture"
 ```cpp
 #include "cigarfilter_API.hpp" // Don't worry if this file is not in your directory
 
-CIGARFILTER_PLUGIN ( // A macro that wraps your code in a cigarfilter plugin. 
-bool filter(CIGAR &cigar, std::string &samline){ 
+CIGARFILTER_PLUGIN ( // A macro that wraps your code in a cigarfilter plugin.
+bool filter(CIGAR &cigar, std::string &samline){
    /*
     * Your implementation goes here
     */
@@ -199,15 +200,15 @@ bool filter(CIGAR &cigar, std::string &samline){
 
 ## Step 4. Implement your filter
 
-Here is a simple example of implementation : 
+Here is a simple example of implementation :
 
 ```cpp
 #include "cigarfilter_API.hpp"
 
-CIGARFILTER_PLUGIN ( 
-bool filter(CIGAR &cigar, std::string &samline){ 
+CIGARFILTER_PLUGIN (
+bool filter(CIGAR &cigar, std::string &samline){
    if(cigar.D >= 5){ // If the read contains 5 deletions or more, don't print it...
-          return false; 
+          return false;
    }
    else{
       return true;
@@ -220,7 +221,7 @@ See [here](https://github.com/GDelevoye/cigarfilter/wiki/4.-Create-your-own-filt
 ## Step 5. Compile and install your filter
 
 ```bash
-cigarfilter_config add [your_implementation.cpp] [your_filter_name] 
+cigarfilter_config add [your_implementation.cpp] [your_filter_name]
 # This is where the dark magic happens
 ```
 
@@ -241,7 +242,7 @@ You can also use it directly on .sam files :
 cat ./input.sam | cigarfilter -f your_filter_name > filtered_output.sam
 ```
 
-By default, cigarfilter transmits the header. If you want to avoid that behaviour you can use "--print_header false" : 
+By default, cigarfilter transmits the header. If you want to avoid that behaviour you can use "--print_header false" :
 
 ```bash
 # The header will not be present in filtered_output.sam
