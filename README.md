@@ -46,34 +46,41 @@ This projects aims to simplify the development/deployment of such filters coded 
 
 ## Step 1. Installation
 
-### clone the directory : 
+### 1.1 : Install [mamba](https://github.com/conda-forge/miniforge) (preferred) or [conda](https://docs.conda.io/en/latest/) (deprecated)
 
-```console
-user@computer:$ git clone https://github.com/GDelevoye/cigarfilter/
-user@computer:$ cd cigarfilter
+[Mamba](https://github.com/conda-forge/miniforge) is a fast/efficient alternative to the well-known [conda](https://docs.conda.io/en/latest/)
+
+```
+wget "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh"
+bash Miniforge3-$(uname)-$(uname -m).sh
 ```
 
-### Create your [conda](https://www.anaconda.com/products/distribution) environment
+Once it is done, **Restart the terminal**
+
+> If you don't do it, you'll have problems
+
+### 1.2 Build and install the package with mamba
+
+Ensure that you are using mamba instead of conda, and then :
 
 ```console
-user@computer:$ conda activate
-(base) user@computer:$ conda create -n your_env
+git clone https://github.com/GDelevoye/cigarfilter/
+cd cigarfilter
+mamba create -n cf cxx-compiler cmake make pip "conan<2" boa -c conda-forge
+mamba actvate cf
+conda mambabuild ./conda-recipe/ -c conda-forge
+mamba install -c local cigarfilter
 ```
 
-### build and install the package from sources with [conda](https://www.anaconda.com/products/distribution) :
+## Step 2 : Check how to use / Test that everything works
 
-This requires [a C++17 compliant compiler](https://en.cppreference.com/w/cpp/compiler_support)
+Make sure that you are using the "cf" mamba environment that was created in the previous script
 
-```console
-(base) user@computer:$ conda install conda-build
-(base) user@computer:$ conda build conda-recipe -c conda-forge
-(base) user@computer:$ conda install -c local cigarfilter -c conda-forge cigarfilter -n your_env
-```
-## Step 2. Check that your installation worked
+The main program :
 
 ```console
-(base) user@computer:$ conda activate -n your_env
-(your_env) user@computer:~$ cigarfilter -h
+(base) delevoye@Dell-G15-5530:~/cigarfilter$ mamba activate cf
+(cf) delevoye@Dell-G15-5530:~/cigarfilter$ cigarfilter -h
 USAGE:
   cigarfilter [-?|-h|--help] [-f|--filter <filter name>] [-p|--print_header <bool>]
 
@@ -85,14 +92,96 @@ OPTIONS, ARGUMENTS:
                           Use "cigarfilter_config help" for more info.
   -p, --print_header <bool>
                           When set to false, the header is not printed. <default: TRUE>
-
 ```
 
-> You can also run the tests locally :
-> 
-> ```console
-> (your_env) user@computer:~$ cigarfilter_test
-> ```
+The companion software to handle the plugins : 
+
+
+```console
+(cf) delevoye@Dell-G15-5530:~/cigarfilter$ cigarfilter_config -h
+  * help :
+	 Displays this help
+
+  * pluginpath :
+	 Displays the path were filters are stored. Manually modify them only at your own risks.
+
+  * list :
+	 Lists all available filters.
+
+  * add :
+	 Adds a filter from a .cpp file (see README online at https://github.com/GDelevoye/cigarfilter).
+
+  * remove :
+	 Removes a filter. Example : "cigarfilter_config remove default".
+
+  * clean :
+	 Cleans all logs and temporary files.
+
+  * purge :
+	 Cleans all logs, temporary files and all filters except the default one.
+```
+
+Run the automated tests to make sure (among other things) that the two software can communicate correctly : 
+
+```console
+(cf) delevoye@Dell-G15-5530:~/cigarfilter$ cigarfilter_test
+Running main() from /home/delevoye/.conan/data/gtest/1.12.1/_/_/build/bd0690086619c54f81a8365940843110bf637ce7/src/googletest/src/gtest_main.cc
+[==========] Running 20 tests from 3 test suites.
+[----------] Global test environment set-up.
+[----------] 12 tests from cigar
+[ RUN      ] cigar.t_listdigit
+[       OK ] cigar.t_listdigit (0 ms)
+[ RUN      ] cigar.t_eq
+[       OK ] cigar.t_eq (0 ms)
+[ RUN      ] cigar.t_empty
+[       OK ] cigar.t_empty (0 ms)
+[ RUN      ] cigar.t_S
+[       OK ] cigar.t_S (0 ms)
+[ RUN      ] cigar.t_D
+[       OK ] cigar.t_D (0 ms)
+[ RUN      ] cigar.t_I
+[       OK ] cigar.t_I (0 ms)
+[ RUN      ] cigar.t_X
+[       OK ] cigar.t_X (0 ms)
+[ RUN      ] cigar.t_N
+[       OK ] cigar.t_N (0 ms)
+[ RUN      ] cigar.t_P
+[       OK ] cigar.t_P (0 ms)
+[ RUN      ] cigar.t_H
+[       OK ] cigar.t_H (0 ms)
+[ RUN      ] cigar.t_M
+[       OK ] cigar.t_M (0 ms)
+[ RUN      ] cigar.complex_1
+[       OK ] cigar.complex_1 (0 ms)
+[----------] 12 tests from cigar (0 ms total)
+
+[----------] 2 tests from plugin_helpers
+[ RUN      ] plugin_helpers.plugindir
+[       OK ] plugin_helpers.plugindir (16 ms)
+[ RUN      ] plugin_helpers.get_default_plugin
+[       OK ] plugin_helpers.get_default_plugin (17 ms)
+[----------] 2 tests from plugin_helpers (33 ms total)
+
+[----------] 6 tests from ExampleTest
+[ RUN      ] ExampleTest.iterate_groups_t
+[       OK ] ExampleTest.iterate_groups_t (51 ms)
+[ RUN      ] ExampleTest.default_t
+[       OK ] ExampleTest.default_t (51 ms)
+[ RUN      ] ExampleTest.example1_t
+[       OK ] ExampleTest.example1_t (50 ms)
+[ RUN      ] ExampleTest.example2_t
+[       OK ] ExampleTest.example2_t (50 ms)
+[ RUN      ] ExampleTest.example3_t
+[       OK ] ExampleTest.example3_t (51 ms)
+[ RUN      ] ExampleTest.example4_t
+ERROR : Could not remove the tmp file in fixture "StdoutFixture"
+[       OK ] ExampleTest.example4_t (16 ms)
+[----------] 6 tests from ExampleTest (272 ms total)
+
+[----------] Global test environment tear-down
+[==========] 20 tests from 3 test suites ran. (306 ms total)
+[  PASSED  ] 20 tests.
+```
 
 ## Step 3. Copy-paste the template in a .cpp source file
 
@@ -158,5 +247,3 @@ By default, cigarfilter transmits the header. If you want to avoid that behaviou
 # The header will not be present in filtered_output.sam
 cat ./input.sam | cigarfilter -f your_filter_name --print_header false > filtered_output.sam
 ```
-
-
