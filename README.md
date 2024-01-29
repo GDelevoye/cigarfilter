@@ -73,56 +73,9 @@ conda mambabuild ./conda-recipe/ -c conda-forge
 mamba install -c local cigarfilter
 ```
 
-## Step 2 : Check how to use / Test that everything works
+## Step 2.1 : Run the tests
 
-Make sure that you are using the "cf" mamba environment that was created in the previous script
-
-The main program :
-
-```console
-(base) delevoye@Dell-G15-5530:~/cigarfilter$ mamba activate cf
-(cf) delevoye@Dell-G15-5530:~/cigarfilter$ cigarfilter -h
-USAGE:
-  cigarfilter [-?|-h|--help] [-f|--filter <filter name>] [-p|--print_header <bool>]
-
-Display usage information.
-
-OPTIONS, ARGUMENTS:
-  -?, -h, --help          
-  -f, --filter <filter name>
-                          Use "cigarfilter_config help" for more info.
-  -p, --print_header <bool>
-                          When set to false, the header is not printed. <default: TRUE>
-```
-
-The companion software to handle the plugins :
-
-
-```console
-(cf) delevoye@Dell-G15-5530:~/cigarfilter$ cigarfilter_config -h
-  * help :
-	 Displays this help
-
-  * pluginpath :
-	 Displays the path were filters are stored. Manually modify them only at your own risks.
-
-  * list :
-	 Lists all available filters.
-
-  * add :
-	 Adds a filter from a .cpp file (see README online at https://github.com/GDelevoye/cigarfilter).
-
-  * remove :
-	 Removes a filter. Example : "cigarfilter_config remove default".
-
-  * clean :
-	 Cleans all logs and temporary files.
-
-  * purge :
-	 Cleans all logs, temporary files and all filters except the default one.
-```
-
-Run the automated tests to make sure (among other things) that the two software can communicate correctly :
+Run the automated tests :
 
 ```console
 (cf) delevoye@Dell-G15-5530:~/cigarfilter$ cigarfilter_test
@@ -175,13 +128,58 @@ Running main() from /home/delevoye/.conan/data/gtest/1.12.1/_/_/build/bd06900866
 [ RUN      ] ExampleTest.example3_t
 [       OK ] ExampleTest.example3_t (51 ms)
 [ RUN      ] ExampleTest.example4_t
-ERROR : Could not remove the tmp file in fixture "StdoutFixture"
 [       OK ] ExampleTest.example4_t (16 ms)
 [----------] 6 tests from ExampleTest (272 ms total)
 
 [----------] Global test environment tear-down
 [==========] 20 tests from 3 test suites ran. (306 ms total)
 [  PASSED  ] 20 tests.
+```
+
+## Step 2.2 : Usage
+
+
+```console
+(base) delevoye@Dell-G15-5530:~/cigarfilter$ mamba activate cf
+(cf) delevoye@Dell-G15-5530:~/cigarfilter$ cigarfilter -h
+USAGE:
+  cigarfilter [-?|-h|--help] [-f|--filter <filter name>] [-p|--print_header <bool>]
+
+Display usage information.
+
+OPTIONS, ARGUMENTS:
+  -?, -h, --help          
+  -f, --filter <filter name>
+                          Use "cigarfilter_config help" for more info.
+  -p, --print_header <bool>
+                          When set to false, the header is not printed. <default: TRUE>
+```
+
+The companion software to handle the plugins :
+
+
+```console
+(cf) delevoye@Dell-G15-5530:~/cigarfilter$ cigarfilter_config -h
+  * help :
+	 Displays this help
+
+  * pluginpath :
+	 Displays the path were filters are stored. Manually modify them only at your own risks.
+
+  * list :
+	 Lists all available filters.
+
+  * add :
+	 Adds a filter from a .cpp file (see README online at https://github.com/GDelevoye/cigarfilter).
+
+  * remove :
+	 Removes a filter. Example : "cigarfilter_config remove default".
+
+  * clean :
+	 Cleans all logs and temporary files.
+
+  * purge :
+	 Cleans all logs, temporary files and all filters except the default one.
 ```
 
 ## Step 3. Copy-paste the template in a .cpp source file
