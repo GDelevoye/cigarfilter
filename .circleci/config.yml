@@ -17,19 +17,22 @@ jobs:
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
       - checkout 
-      - run: sudo apt-get update && sudo apt-get install -y build-essential bash wget && sudo apt install gcc
+      - run: sudo apt update && sudo apt install -y bash wget build-essential
       - run:
           command: |
-            wget https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh  # miniforge
-            chmod +x Miniforge3-Linux-x86_64.sh
-            bash Miniforge3-Linux-x86_64.sh -b -p $HOME/Miniforge3
-            export PATH="$HOME/Miniforge3/bin:$PATH"
-
-            mamba create -n cf -c conda-forge cxx-compiler cmake make pip "conan<2" boa pkg-config
-            mamba actvate cf
-            conda mambabuild ./conda-recipe/ -c conda-forge
-            mamba install -c local cigarfilter -n cf -y
+            wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh  # miniconda
+            chmod +x Miniconda3-latest-Linux-x86_64.sh
+            bash Miniconda3-latest-Linux-x86_64.sh -b -p $HOME/miniconda3
+            export PATH="$HOME/miniconda3/bin:$PATH"
+            conda config --add channels conda-forge
+            conda install -c conda-forge mamba
+            mamba create -n cf -c conda-forge cmake make pip "conan<2" boa pkg-config numpy
+      - run:
+          command: |
+            export PATH="$HOME/miniconda3/bin:$PATH"
             source activate cf
+            conda mambabuild ./conda-recipe/ -c conda-forge
+            mamba install -c local -c conda-forge cigarfilter -n cf -y
             cigarfilter_test
 workflows:
   install_and_test:
